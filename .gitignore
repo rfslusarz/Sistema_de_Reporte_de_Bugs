@@ -1,34 +1,33 @@
-# IDE and Editor files
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# OS files
-.DS_Store
-Thumbs.db
-
 # Logs
+logs
 *.log
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# Dependencies
-node_modules/
-__pycache__/
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Additional patterns
 *.pyc
+__pycache__/
 venv/
 env/
-
-# Build outputs
-dist/
-build/
-*.egg-info/
-
-# Environment variables
-.env
-.env.local
-.env.*.local
 
 # Temporary files
 *.tmp
