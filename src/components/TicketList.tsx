@@ -53,6 +53,28 @@ export const TicketList = ({ tickets }: TicketListProps) => {
     return colors[priority];
   };
 
+  const getStatusLabel = (status: Ticket["status"]) => {
+    const labels = {
+      aberto: "🟡 Aberto",
+      em_analise: "🔵 Em Análise",
+      em_desenvolvimento: "🟠 Em Desenvolvimento",
+      resolvido: "🟢 Resolvido",
+      fechado: "⚪ Fechado",
+    };
+    return labels[status];
+  };
+
+  const getStatusDescription = (status: Ticket["status"]) => {
+    const descriptions = {
+      aberto: "Criado pela operação, aguardando análise",
+      em_analise: "Avaliado pelo desenvolvedor responsável",
+      em_desenvolvimento: "Correção ou implementação em andamento",
+      resolvido: "Concluído e aguardando validação da operação",
+      fechado: "Validação feita, ticket encerrado",
+    };
+    return descriptions[status];
+  };
+
   if (tickets.length === 0) {
     return (
       <Card className="shadow-[var(--shadow-soft)]">
@@ -75,13 +97,21 @@ export const TicketList = ({ tickets }: TicketListProps) => {
               <div className="flex items-start gap-3 flex-1">
                 <div className="mt-1 text-primary">{getTypeIcon(ticket.type)}</div>
                 <div className="flex-1 min-w-0">
-                  <CardTitle className="text-lg mb-2">{ticket.title}</CardTitle>
+                  <div className="flex items-center gap-2 mb-2">
+                    <CardTitle className="text-lg">{ticket.title}</CardTitle>
+                    <Badge variant="outline" className="text-xs font-mono">
+                      {ticket.id}
+                    </Badge>
+                  </div>
                   <div className="flex flex-wrap gap-2 mb-3">
                     <Badge variant="outline" className="text-xs">
                       {getTypeLabel(ticket.type)}
                     </Badge>
                     <Badge className={`text-xs border ${getPriorityColor(ticket.priority)}`}>
                       {getPriorityLabel(ticket.priority)}
+                    </Badge>
+                    <Badge variant="secondary" className="text-xs" title={getStatusDescription(ticket.status)}>
+                      {getStatusLabel(ticket.status)}
                     </Badge>
                   </div>
                   <p className="text-sm text-muted-foreground line-clamp-2">{ticket.description}</p>

@@ -7,10 +7,12 @@ import shippifyLogo from "@/assets/shippify-logo.png";
 const Index = () => {
   const [tickets, setTickets] = useState<Ticket[]>([]);
 
-  const handleTicketSubmit = (ticketData: Omit<Ticket, "id" | "createdAt">) => {
+  const handleTicketSubmit = (ticketData: Omit<Ticket, "id" | "createdAt" | "status">) => {
+    const ticketNumber = String(tickets.length + 1).padStart(4, '0');
     const newTicket: Ticket = {
       ...ticketData,
-      id: Math.random().toString(36).substring(7),
+      id: `#${ticketNumber}`,
+      status: "aberto",
       createdAt: new Date(),
     };
     setTickets((prev) => [newTicket, ...prev]);

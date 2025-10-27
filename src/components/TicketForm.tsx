@@ -16,6 +16,7 @@ import { toast } from "@/hooks/use-toast";
 
 export type TicketType = "requisicao" | "bug" | "pedido_acesso" | "solicitacao_arquivo";
 export type Priority = "baixa" | "media" | "alta" | "muito_alta";
+export type Status = "aberto" | "em_analise" | "em_desenvolvimento" | "resolvido" | "fechado";
 
 export interface Ticket {
   id: string;
@@ -24,11 +25,12 @@ export interface Ticket {
   title: string;
   description: string;
   attachments: File[];
+  status: Status;
   createdAt: Date;
 }
 
 interface TicketFormProps {
-  onSubmit: (ticket: Omit<Ticket, "id" | "createdAt">) => void;
+  onSubmit: (ticket: Omit<Ticket, "id" | "createdAt" | "status">) => void;
 }
 
 export const TicketForm = ({ onSubmit }: TicketFormProps) => {
