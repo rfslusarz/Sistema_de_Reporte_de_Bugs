@@ -17,11 +17,13 @@ import { toast } from "@/hooks/use-toast";
 export type TicketType = "requisicao" | "bug" | "pedido_acesso" | "solicitacao_arquivo";
 export type Priority = "baixa" | "media" | "alta" | "muito_alta";
 export type Status = "aberto" | "em_analise" | "em_desenvolvimento" | "resolvido" | "fechado";
+export type Product = "login" | "nova_entrega" | "importacao_entregas" | "historicos" | "motoristas" | "usuarios" | "pagamentos" | "rotas" | "monitor" | "fleet";
 
 export interface Ticket {
   id: string;
   type: TicketType;
   priority: Priority;
+  product: Product;
   title: string;
   description: string;
   attachments: File[];
@@ -36,6 +38,7 @@ interface TicketFormProps {
 export const TicketForm = ({ onSubmit }: TicketFormProps) => {
   const [type, setType] = useState<TicketType | "">("");
   const [priority, setPriority] = useState<Priority | "">("");
+  const [product, setProduct] = useState<Product | "">("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [attachments, setAttachments] = useState<File[]>([]);
@@ -54,7 +57,7 @@ export const TicketForm = ({ onSubmit }: TicketFormProps) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!type || !priority || !title || !description) {
+    if (!type || !priority || !product || !title || !description) {
       toast({
         title: "Campos obrigatórios",
         description: "Por favor, preencha todos os campos obrigatórios.",
@@ -66,6 +69,7 @@ export const TicketForm = ({ onSubmit }: TicketFormProps) => {
     onSubmit({
       type: type as TicketType,
       priority: priority as Priority,
+      product: product as Product,
       title,
       description,
       attachments,
@@ -74,6 +78,7 @@ export const TicketForm = ({ onSubmit }: TicketFormProps) => {
     // Reset form
     setType("");
     setPriority("");
+    setProduct("");
     setTitle("");
     setDescription("");
     setAttachments([]);
@@ -96,6 +101,19 @@ export const TicketForm = ({ onSubmit }: TicketFormProps) => {
     media: "Média",
     alta: "Alta",
     muito_alta: "Muito Alta",
+  };
+
+  const productLabels = {
+    login: "Login",
+    nova_entrega: "Nova Entrega",
+    importacao_entregas: "Importação de Entregas",
+    historicos: "Históricos",
+    motoristas: "Motoristas",
+    usuarios: "Usuários",
+    pagamentos: "Pagamentos",
+    rotas: "Rotas",
+    monitor: "Monitor",
+    fleet: "Fleet",
   };
 
   return (
@@ -138,6 +156,22 @@ export const TicketForm = ({ onSubmit }: TicketFormProps) => {
                 </SelectContent>
               </Select>
             </div>
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="product">Produto do Sistema *</Label>
+            <Select value={product} onValueChange={(value) => setProduct(value as Product)}>
+              <SelectTrigger id="product">
+                <SelectValue placeholder="Selecione o produto" />
+              </SelectTrigger>
+              <SelectContent>
+                {Object.entries(productLabels).map(([value, label]) => (
+                  <SelectItem key={value} value={value}>
+                    {label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
 
           <div className="space-y-2">

@@ -43,6 +43,22 @@ export const TicketList = ({ tickets }: TicketListProps) => {
     return labels[priority];
   };
 
+  const getProductLabel = (product: Ticket["product"]) => {
+    const labels = {
+      login: "Login",
+      nova_entrega: "Nova Entrega",
+      importacao_entregas: "Importação de Entregas",
+      historicos: "Históricos",
+      motoristas: "Motoristas",
+      usuarios: "Usuários",
+      pagamentos: "Pagamentos",
+      rotas: "Rotas",
+      monitor: "Monitor",
+      fleet: "Fleet",
+    };
+    return labels[product];
+  };
+
   const getPriorityColor = (priority: Ticket["priority"]) => {
     const colors = {
       baixa: "bg-priority-low/10 text-priority-low border-priority-low/20",
@@ -112,6 +128,9 @@ export const TicketList = ({ tickets }: TicketListProps) => {
                     </Badge>
                     <Badge variant="secondary" className="text-xs" title={getStatusDescription(ticket.status)}>
                       {getStatusLabel(ticket.status)}
+                    </Badge>
+                    <Badge variant="outline" className="text-xs bg-accent/5">
+                      📦 {getProductLabel(ticket.product)}
                     </Badge>
                   </div>
                   <p className="text-sm text-muted-foreground line-clamp-2">{ticket.description}</p>
