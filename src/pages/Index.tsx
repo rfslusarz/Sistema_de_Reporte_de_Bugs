@@ -2,7 +2,7 @@ import { useState } from "react";
 import { TicketForm, Ticket } from "@/components/TicketForm";
 import { TicketList } from "@/components/TicketList";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Headset } from "lucide-react";
+import shippifyLogo from "@/assets/shippify-logo.png";
 
 const Index = () => {
   const [tickets, setTickets] = useState<Ticket[]>([]);
@@ -20,12 +20,14 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8 max-w-6xl">
         <header className="mb-8 text-center">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="p-3 bg-primary/10 rounded-xl">
-              <Headset className="h-8 w-8 text-primary" />
-            </div>
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <img 
+              src={shippifyLogo} 
+              alt="Shippify Logo" 
+              className="h-12 w-auto"
+            />
             <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-              Sistema de Suporte
+              Tech Support Shippify
             </h1>
           </div>
           <p className="text-muted-foreground text-lg">
