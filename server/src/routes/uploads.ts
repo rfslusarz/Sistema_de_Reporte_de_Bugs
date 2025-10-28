@@ -35,7 +35,7 @@ router.post('/:ticketId', upload.single('file'), (req, res) => {
       return res.status(400).json({ error: 'Nenhum arquivo enviado' });
     }
 
-    const ticket = db.prepare('SELECT * FROM tickets WHERE id = ?').get(ticketId);
+    const ticket = db.prepare('SELECT * FROM tickets WHERE id = ?').get(ticketId) as Record<string, unknown> | undefined;
     
     if (!ticket) {
       // Deletar arquivo se ticket não existe
@@ -43,14 +43,15 @@ router.post('/:ticketId', upload.single('file'), (req, res) => {
       return res.status(404).json({ error: 'Ticket não encontrado' });
     }
 
+    const file = req.file as Express.Multer.File;
     const attachment = {
       id: uuidv4(),
       ticket_id: ticketId,
-      filename: req.file.filename,
-      originalname: req.file.originalname,
-      mimetype: req.file.mimetype,
-      size: req.file.size,
-      path: req.file.path,
+      filename: file.filename,
+      originalname: file.originalname,
+      mimetype: file.mimetype,
+      size: file.size,
+      path: file.path,
       created_at: new Date().toISOString()
     };
 
@@ -92,7 +93,7 @@ router.get('/:ticketId/:fileId/download', (req, res) => {
     const { ticketId, fileId } = req.params;
     
     const attachment = db.prepare('SELECT * FROM attachments WHERE id = ? AND ticket_id = ?')
-      .get(fileId, ticketId);
+      .get(fileId, ticketId) as { path: string; originalname: string } | undefined;
     
     if (!attachment) {
       return res.status(404).json({ error: 'Arquivo não encontrado' });
@@ -117,7 +118,7 @@ router.delete('/:ticketId/:fileId', (req, res) => {
     const { ticketId, fileId } = req.params;
     
     const attachment = db.prepare('SELECT * FROM attachments WHERE id = ? AND ticket_id = ?')
-      .get(fileId, ticketId);
+      .get(fileId, ticketId) as { path: string } | undefined;
     
     if (!attachment) {
       return res.status(404).json({ error: 'Arquivo não encontrado' });
