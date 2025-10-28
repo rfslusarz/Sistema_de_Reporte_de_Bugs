@@ -1,6 +1,6 @@
-# Tech Support Shippify - Sistema de Gerenciamento de Chamados
+# Tech Support suporte de empresa - Sistema de Gerenciamento de Chamados
 
-Sistema completo de gerenciamento de chamados de suporte técnico para a empresa Shippify.
+Sistema completo de gerenciamento de chamados de suporte técnico para suporte de empresa.
 
 ## 🚀 Funcionalidades
 
@@ -162,8 +162,8 @@ npm run setup            # Instalar todas as dependências
 
 ## 📄 Licença
 
-Este projeto é propriedade da Shippify.
+Este projeto é propriedade da empresa.
 
 ---
 
-Desenvolvido para a equipe de projetos da Shippify.
+Desenvolvido para a equipe de suporte de empresa.

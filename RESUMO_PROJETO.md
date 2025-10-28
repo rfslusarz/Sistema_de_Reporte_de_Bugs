@@ -1,4 +1,4 @@
-# 📋 RESUMO DO PROJETO - Tech Support Shippify
+# 📋 RESUMO DO PROJETO - Tech Support suporte de empresa
 
 ## ✅ O QUE FOI FEITO
 
@@ -180,5 +180,5 @@ Para problemas, consulte:
 
 ---
 
-**Desenvolvido para a equipe de projetos da Shippify**
+**Desenvolvido para a equipe de suporte de empresa**
 

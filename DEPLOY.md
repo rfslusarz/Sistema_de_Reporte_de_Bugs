@@ -1,4 +1,4 @@
-# 🚀 Guia de Deploy - Tech Support Shippify
+# 🚀 Guia de Deploy - Tech Support suporte de empresa
 
 Este guia explica como fazer deploy da aplicação em servidores gratuitos para demonstrar para a equipe.
 

@@ -88,11 +88,11 @@ const Index = () => {
           <div className="flex items-center justify-center gap-4 mb-4">
             <img 
               src={shippifyLogo} 
-              alt="Shippify Logo" 
+              alt="suporte de empresa Logo" 
               className="h-12 w-auto"
             />
             <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-              Tech Support Shippify
+              Tech Support suporte de empresa
             </h1>
           </div>
           <p className="text-muted-foreground text-lg">
