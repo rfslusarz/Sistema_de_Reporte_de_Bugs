@@ -1,77 +1,169 @@
-# Welcome to your Lovable project
+# Tech Support Shippify - Sistema de Gerenciamento de Chamados
 
-## Project info
+Sistema completo de gerenciamento de chamados de suporte técnico para a empresa Shippify.
 
-**URL**: https://lovable.dev/projects/b433b661-fd7e-44ce-bf56-fb8ee8285916
+## 🚀 Funcionalidades
 
-## How can I edit this code?
+- ✅ Criação de chamados com categorias (Requisição, Bug, Pedido de Acesso, Solicitação de Arquivo)
+- ✅ Sistema de prioridades (Baixa, Média, Alta, Muito Alta)
+- ✅ Múltiplos produtos do sistema
+- ✅ Upload de arquivos (fotos, vídeos, PDFs)
+- ✅ Gestão de status (Aberto, Em Análise, Em Desenvolvimento, Resolvido, Fechado)
+- ✅ Interface moderna e responsiva
+- ✅ API REST completa com backend Node.js + Express
+- ✅ Banco de dados SQLite
 
-There are several ways of editing your application.
+## 🛠️ Tecnologias
 
-**Use Lovable**
+### Frontend
+- React + TypeScript
+- Vite
+- shadcn/ui
+- Tailwind CSS
+- React Router
+- React Query
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/b433b661-fd7e-44ce-bf56-fb8ee8285916) and start prompting.
+### Backend
+- Node.js + Express
+- TypeScript
+- SQLite (better-sqlite3)
+- Multer (upload de arquivos)
 
-Changes made via Lovable will be committed automatically to this repo.
+## 📦 Instalação
 
-**Use your preferred IDE**
+### 1. Instalar dependências
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+```bash
+npm run setup
+```
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Este comando instala as dependências do frontend e do backend.
 
-Follow these steps:
+### 2. Configurar variáveis de ambiente
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Criar arquivo `.env` na raiz do projeto:
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+```env
+VITE_API_URL=http://localhost:3000
+```
 
-# Step 3: Install the necessary dependencies.
-npm i
+Criar arquivo `server/.env`:
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```env
+PORT=3000
+FRONTEND_URL=http://localhost:5173
+```
+
+### 3. Inicializar banco de dados
+
+```bash
+cd server
+npm run migrate
+cd ..
+```
+
+## 🎮 Executar
+
+### Desenvolvimento (Frontend + Backend)
+
+```bash
+npm run dev:all
+```
+
+Isso inicia:
+- Frontend em: `http://localhost:8080`
+- Backend em: `http://localhost:3000`
+
+### Desenvolvimento separado
+
+**Frontend:**
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+**Backend:**
+```bash
+npm run server:dev
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 📚 API Endpoints
 
-**Use GitHub Codespaces**
+### Tickets
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- `GET /api/tickets` - Listar todos os tickets
+- `GET /api/tickets/:id` - Obter ticket específico
+- `POST /api/tickets` - Criar novo ticket
+- `PUT /api/tickets/:id` - Atualizar ticket
+- `DELETE /api/tickets/:id` - Deletar ticket
 
-## What technologies are used for this project?
+### Uploads
 
-This project is built with:
+- `POST /api/uploads/:ticketId` - Upload de arquivo
+- `GET /api/uploads/:ticketId` - Listar anexos de um ticket
+- `GET /api/uploads/:ticketId/:fileId/download` - Download de arquivo
+- `DELETE /api/uploads/:ticketId/:fileId` - Deletar anexo
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 🚢 Deploy
 
-## How can I deploy this project?
+### Opção 1: Render.com (Gratuito)
 
-Simply open [Lovable](https://lovable.dev/projects/b433b661-fd7e-44ce-bf56-fb8ee8285916) and click on Share -> Publish.
+1. Criar conta no [Render.com](https://render.com)
+2. Conectar repositório GitHub
+3. Render configura automaticamente via `render.yaml`
+4. A aplicação ficará disponível em: `https://tech-support.onrender.com`
 
-## Can I connect a custom domain to my Lovable project?
+### Opção 2: Railway (Gratuito)
 
-Yes, you can!
+1. Criar conta no [Railway.app](https://railway.app)
+2. Conectar repositório
+3. Railway detecta automaticamente e faz o deploy
+4. A aplicação ficará disponível em: `https://seu-projeto.railway.app`
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### Opção 3: Vercel + Backend separado
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+1. Frontend: Deploy no Vercel
+2. Backend: Deploy no Render ou Railway
+3. Configurar `VITE_API_URL` no Vercel
 
-## Task Porter / Application Tech Support
+## 📁 Estrutura do Projeto
 
-This project also includes the Task Porter application for technical support management.
+```
+├── src/                    # Frontend React
+│   ├── components/         # Componentes React
+│   ├── pages/             # Páginas
+│   ├── lib/               # Utilitários e API
+│   └── ...
+├── server/                # Backend Node.js
+│   ├── src/
+│   │   ├── db/            # Banco de dados
+│   │   ├── routes/        # Rotas da API
+│   │   └── index.ts       # Entry point
+│   └── ...
+└── public/                # Arquivos estáticos
+```
+
+## 🔧 Scripts Disponíveis
+
+```bash
+# Frontend
+npm run dev              # Desenvolvimento frontend
+npm run build            # Build de produção
+npm run preview          # Preview do build
+
+# Backend
+npm run server:dev       # Desenvolvimento backend
+npm run server:build     # Build backend
+npm run server:start     # Iniciar backend em produção
+
+# Ambos
+npm run dev:all          # Desenvolvimento (frontend + backend)
+npm run setup            # Instalar todas as dependências
+```
+
+## 📄 Licença
+
+Este projeto é propriedade da Shippify.
+
+---
+
+Desenvolvido para a equipe de projetos da Shippify.

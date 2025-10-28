@@ -1,21 +1,84 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { TicketForm, Ticket } from "@/components/TicketForm";
 import { TicketList } from "@/components/TicketList";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import shippifyLogo from "@/assets/shippify-logo.png";
+import { ticketApi, Ticket as ApiTicket } from "@/lib/api";
+import { toast } from "@/hooks/use-toast";
 
 const Index = () => {
   const [tickets, setTickets] = useState<Ticket[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const handleTicketSubmit = (ticketData: Omit<Ticket, "id" | "createdAt" | "status">) => {
-    const ticketNumber = String(tickets.length + 1).padStart(4, '0');
-    const newTicket: Ticket = {
-      ...ticketData,
-      id: `#${ticketNumber}`,
-      status: "aberto",
-      createdAt: new Date(),
+  // Carregar tickets ao iniciar
+  useEffect(() => {
+    loadTickets();
+  }, []);
+
+  const loadTickets = async () => {
+    try {
+      setLoading(true);
+      const apiTickets = await ticketApi.getTickets();
+      setTickets(apiTickets.map(convertApiTicketToTicket));
+    } catch (error) {
+      console.error('Erro ao carregar tickets:', error);
+      toast({
+        title: "Erro ao carregar tickets",
+        description: "Não foi possível conectar ao servidor.",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleTicketSubmit = async (ticketData: Omit<Ticket, "id" | "createdAt" | "status">) => {
+    try {
+      // Criar ticket
+      const newTicket = await ticketApi.createTicket({
+        type: ticketData.type,
+        priority: ticketData.priority,
+        product: ticketData.product,
+        title: ticketData.title,
+        description: ticketData.description,
+      });
+
+      // Upload de arquivos se houver
+      if (ticketData.attachments && ticketData.attachments.length > 0) {
+        for (const file of ticketData.attachments) {
+          try {
+            await ticketApi.uploadFile(newTicket.id, file);
+          } catch (error) {
+            console.error('Erro ao fazer upload de arquivo:', error);
+          }
+        }
+      }
+
+      // Recarregar tickets
+      await loadTickets();
+    } catch (error) {
+      console.error('Erro ao criar ticket:', error);
+      toast({
+        title: "Erro ao criar chamado",
+        description: error instanceof Error ? error.message : "Não foi possível criar o chamado.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  // Converter ticket da API para o formato local
+  const convertApiTicketToTicket = (apiTicket: ApiTicket): Ticket => {
+    return {
+      id: apiTicket.id,
+      type: apiTicket.type,
+      priority: apiTicket.priority,
+      product: apiTicket.product,
+      title: apiTicket.title,
+      description: apiTicket.description,
+      status: apiTicket.status,
+      createdAt: new Date(apiTicket.created_at),
+      attachments: [],
     };
-    setTickets((prev) => [newTicket, ...prev]);
   };
 
   return (
@@ -50,7 +113,13 @@ const Index = () => {
           </TabsContent>
 
           <TabsContent value="lista" className="space-y-6">
-            <TicketList tickets={tickets} />
+            {loading ? (
+              <div className="text-center py-12">
+                <p className="text-muted-foreground">Carregando tickets...</p>
+              </div>
+            ) : (
+              <TicketList tickets={tickets} />
+            )}
           </TabsContent>
         </Tabs>
       </div>

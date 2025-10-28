@@ -1,0 +1,117 @@
+═══════════════════════════════════════════════════════════════
+   🚀 GUIA RÁPIDO - DEPLOY TECH SUPPORT SHIPPIFY
+═══════════════════════════════════════════════════════════════
+
+📌 PASSO A PASSO PARA COLOCAR NO AR E DEMONSTRAR PARA A EQUIPE
+
+═══════════════════════════════════════════════════════════════
+1️⃣  INSTALAÇÃO LOCAL (PARA TESTAR)
+═══════════════════════════════════════════════════════════════
+
+# Instalar todas as dependências
+npm run setup
+
+# Iniciar backend e frontend juntos
+npm run dev:all
+
+✅ Frontend: http://localhost:8080
+✅ Backend: http://localhost:3000
+
+═══════════════════════════════════════════════════════════════
+2️⃣  DEPLOY NO RENDER.COM (MAIS FÁCIL)
+═══════════════════════════════════════════════════════════════
+
+1. Acesse: https://render.com
+2. Clique em "Get Started" e faça login com GitHub
+3. Clique em "New" → "Web Service"
+4. Conecte seu repositório GitHub
+5. Configure:
+   
+   Nome: tech-support-app
+   Branch: main
+   Root Directory: (deixe vazio)
+   
+   Build Command:
+   cd server && npm install && npm run build && cd .. && npm install && npm run build
+   
+   Start Command:
+   cd server && npm start
+
+6. Clique em "Create Web Service"
+
+7. Aguarde 5-10 minutos para o deploy completar
+
+8. ✅ Pronto! Sua aplicação estará no ar!
+
+URL: https://tech-support-app.onrender.com
+
+═══════════════════════════════════════════════════════════════
+3️⃣  DEPLOY NO RAILWAY.APP (MAIS RÁPIDO)
+═══════════════════════════════════════════════════════════════
+
+1. Acesse: https://railway.app
+2. Clique em "Start a New Project"
+3. Selecione "Deploy from GitHub repo"
+4. Conecte seu repositório
+5. Railway faz tudo automaticamente!
+
+✅ URL será gerada automaticamente
+
+═══════════════════════════════════════════════════════════════
+📝 NOTAS IMPORTANTES
+═══════════════════════════════════════════════════════════════
+
+⚠️  Render.com:
+   - Primeiro acesso pode demorar 30-60 segundos
+   - Instâncias dormem após 15 min de inatividade
+   - Gratuito: 750 horas/mês
+
+⚠️  Railway.app:
+   - Start rápido
+   - Gratuito: $5 créditos/mês
+   - Não dorme automaticamente
+
+═══════════════════════════════════════════════════════════════
+🧪 TESTAR LOCALMENTE ANTES DE DEPLOYAR
+═══════════════════════════════════════════════════════════════
+
+# 1. Instalar
+npm run setup
+
+# 2. Iniciar tudo
+npm run dev:all
+
+# 3. Abrir navegador
+http://localhost:8080
+
+# 4. Testar:
+   ✅ Criar um chamado
+   ✅ Adicionar foto
+   ✅ Ver lista de chamados
+
+═══════════════════════════════════════════════════════════════
+🐛 PROBLEMAS COMUNS
+═══════════════════════════════════════════════════════════════
+
+❌ Erro: "Cannot connect to database"
+   Solução: Execute no servidor: cd server && npm run migrate
+
+❌ Erro: "CORS policy"
+   Solução: Verifique variáveis de ambiente FRONTEND_URL
+
+❌ Frontend não conecta ao backend
+   Solução: Configure VITE_API_URL no .env
+
+═══════════════════════════════════════════════════════════════
+✅ TUDO PRONTO!
+═══════════════════════════════════════════════════════════════
+
+Após o deploy, compartilhe o link com a equipe de projetos!
+A aplicação permite:
+- Criar chamados de suporte
+- Anexar fotos/vídeos
+- Acompanhar status
+- Gerenciar tickets
+
+🎉 Sucesso na demonstração!
+

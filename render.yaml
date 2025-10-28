@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: tech-support-app
+    env: node
+    buildCommand: npm install && cd server && npm install
+    startCommand: |
+      npm run build && 
+      cd server && 
+      npm run migrate && 
+      npm start &
+      cd .. && 
+      sleep 3 && 
+      npm run preview &
+      wait
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: FRONTEND_URL
+        value: https://tech-support.onrender.com
+

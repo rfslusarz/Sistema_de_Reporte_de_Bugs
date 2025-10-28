@@ -15,4 +15,4 @@ This is the main application directory for the Tech Support application, also kn
 
 ## Related Projects
 
-- Main Lovable project in the root directory
+- Main project in the root directory
