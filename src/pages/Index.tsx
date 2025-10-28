@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { TicketForm, Ticket } from "@/components/TicketForm";
 import { TicketList } from "@/components/TicketList";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import shippifyLogo from "@/assets/shippify-logo.png";
+// generic placeholder logo from public/
 import { ticketApi, Ticket as ApiTicket } from "@/lib/api";
 import { toast } from "@/hooks/use-toast";
 
@@ -87,8 +87,8 @@ const Index = () => {
         <header className="mb-8 text-center">
           <div className="flex items-center justify-center gap-4 mb-4">
             <img 
-              src={shippifyLogo} 
-              alt="suporte de empresa Logo" 
+              src="/placeholder.svg" 
+              alt="Logo suporte de empresa" 
               className="h-12 w-auto"
             />
             <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
