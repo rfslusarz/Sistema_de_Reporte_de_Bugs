@@ -1,55 +1,126 @@
-# Tech Support - Sistema de Gerenciamento de Chamados
+# 🐞 Sistema de Reporte de Bugs
 
-Sistema completo de gerenciamento de chamados de suporte técnico para suporte de empresa.
+Este projeto consiste em um Sistema de Reporte e Gerenciamento de Bugs/Chamados, desenvolvido com o objetivo de estudo acadêmico e prática de tecnologias modernas de desenvolvimento web, simulando um ambiente real de suporte técnico e controle de incidentes.
 
-## 🚀 Funcionalidades
+O sistema permite registrar, organizar e acompanhar bugs ou solicitações, servindo como base para aprendizado em frontend, backend, banco de dados e integração entre camadas.
 
-- Abertura e acompanhamento de tickets
-- Upload de arquivos (imagens, vídeos, PDFs)
-- Priorização por tipo e criticidade
-- Integração frontend React + backend Node/Express + SQLite
+# 🎯 Objetivo do Projeto
 
-## 📂 Estrutura do Projeto
+Aplicar conceitos de engenharia de software
 
-- `src/`: Frontend React (Vite + TypeScript + shadcn/ui)
-- `server/`: Backend Node.js (Express + TypeScript + better-sqlite3)
-- `docs/`: Documentação do projeto
-  - `docs/RESUMO_PROJETO.md`: Resumo do projeto
-  - `docs/DEPLOY.md`: Guia de deploy
-  - `docs/COMO_DEPLOYAR.txt`: Guia rápido de deploy
+Praticar desenvolvimento full stack
 
-## ▶️ Como rodar
+Simular um sistema real de reporte de bugs / suporte técnico
 
-```bash
-# instalar dependências de frontend e backend
+Explorar boas práticas de organização de código, estrutura de projeto e integração
+
+Servir como projeto acadêmico e portfólio
+
+# 🚀 Funcionalidades
+
+✔️ Cadastro de chamados / bugs
+✔️ Acompanhamento do status dos reportes
+✔️ Organização por tipo e prioridade
+✔️ Upload de arquivos (ex: evidências do bug)
+✔️ Comunicação entre frontend e backend
+✔️ Persistência de dados em banco local
+
+# 🛠️ Tecnologias Utilizadas
+🔹 Frontend
+
+React
+
+TypeScript
+
+Vite
+
+Tailwind CSS
+
+shadcn/ui
+
+# 🔹 Backend
+
+Node.js
+
+Express
+
+TypeScript
+
+# 🔹 Banco de Dados
+
+SQLite (utilizando better-sqlite3)
+
+# 🔹 Ferramentas e Configurações
+
+Docker (opcional)
+
+ESLint
+
+Configurações para deploy
+
+Estrutura modular e escalável
+
+# 📁 Estrutura do Projeto
+Sistema_de_Reporte_de_Bugs/
+│
+├── src/        # Frontend (React)
+├── server/     # Backend (Node + Express)
+├── docs/       # Documentação e guias
+├── package.json
+└── README.md
+
+# ⚙️ Pré-requisitos
+
+Antes de executar o projeto, é necessário ter instalado:
+
+Node.js (versão 18 ou superior)
+
+npm ou bun
+
+(Opcional) Docker
+
+# ▶️ Como Executar o Projeto
+
+Clone o repositório:
+
+git clone https://github.com/rfslusarz/Sistema_de_Reporte_de_Bugs.git
+cd Sistema_de_Reporte_de_Bugs
+
+
+Instale as dependências:
+
+npm install
+
+
+Execute o projeto:
+
 npm run setup
-
-# rodar frontend e backend juntos
 npm run dev:all
-```
 
-- Frontend: http://localhost:8080
-- Backend: http://localhost:3000
 
-## 🔧 Build de Produção
+Acesse no navegador:
 
-```bash
-# build do frontend
-npm run build
+Frontend: http://localhost:8080
 
-# build do backend
-cd server && npm run build
-```
+Backend: http://localhost:3000
 
-## 🌐 Variáveis de Ambiente
+📚 Contexto Acadêmico
 
-- `FRONTEND_URL`: URL do frontend (CORS do backend)
-- `PORT`: Porta do backend (default 3000)
+Este projeto foi desenvolvido exclusivamente para fins acadêmicos e de aprendizado, com foco em:
 
-## 📄 Licença
+Arquitetura de aplicações web
 
-Este projeto é propriedade da empresa.
+Integração frontend e backend
 
-----
+Manipulação de banco de dados
 
-Desenvolvido para a equipe de suporte de empresa.
+Boas práticas de desenvolvimento
+
+Simulação de cenários reais de mercado
+
+Não possui fins comerciais.
+
+👨‍💻 Autor
+
+Desenvolvido por Rafael Slusarz
+🔗 LinkedIn
