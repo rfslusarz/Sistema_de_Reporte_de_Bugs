@@ -64,9 +64,13 @@ Estrutura modular e escalável
 Sistema_de_Reporte_de_Bugs/
 │
 ├── src/        # Frontend (React)
+
 ├── server/     # Backend (Node + Express)
+
 ├── docs/       # Documentação e guias
+
 ├── package.json
+
 └── README.md
 
 # ⚙️ Pré-requisitos
