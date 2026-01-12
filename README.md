@@ -26,7 +26,7 @@ Servir como projeto acadêmico e portfólio
 ✔️ Persistência de dados em banco local
 
 # 🛠️ Tecnologias Utilizadas
-🔹 Frontend
+# 🔹 Frontend
 
 React
 
@@ -87,24 +87,24 @@ git clone https://github.com/rfslusarz/Sistema_de_Reporte_de_Bugs.git
 cd Sistema_de_Reporte_de_Bugs
 
 
-Instale as dependências:
+* Instale as dependências:
 
 npm install
 
 
-Execute o projeto:
+* Execute o projeto:
 
 npm run setup
 npm run dev:all
 
 
-Acesse no navegador:
+* Acesse no navegador:
 
 Frontend: http://localhost:8080
 
 Backend: http://localhost:3000
 
-📚 Contexto Acadêmico
+# 📚 Contexto Acadêmico
 
 Este projeto foi desenvolvido exclusivamente para fins acadêmicos e de aprendizado, com foco em:
 
@@ -120,7 +120,7 @@ Simulação de cenários reais de mercado
 
 Não possui fins comerciais.
 
-👨‍💻 Autor
+* 👨‍💻 Autor
 
 Desenvolvido por Rafael Slusarz
-🔗 LinkedIn
+🔗 [LinkedIn](https://www.linkedin.com/in/rafaelslusarz07/)
